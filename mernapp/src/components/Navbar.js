@@ -31,6 +31,11 @@ export default function Navbar() {
                   Login
                 </Link>
               </li>
+              <li>
+              <Link className="nav-link" to="/createuser">
+                  SignUp
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
