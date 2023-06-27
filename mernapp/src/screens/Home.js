@@ -1,10 +1,10 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Cart from "../components/cart";
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import '../../node_modules/bootstrap/dist/js/bootstrap.bundle';
-import '../../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
+import Card from "../components/Card";
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../../node_modules/bootstrap/dist/js/bootstrap.bundle";
+import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
 import { useState, useEffect } from "react";
 export default function Home() {
   const [foodcat, setFoodcat] = useState([]);
@@ -31,16 +31,18 @@ export default function Home() {
     <div>
       <Navbar />
       <div>
-      <div
-        id="carouselExampleControls"
-        className="carousel slide"
-        data-bs-ride="carousel"
-        style={{ objectFit: "cover !important" }}
-      >
-        <div className="carousel-inner"  id="carousel">
-          <div className="carousel-caption d-none d-md-block" style={{zIndex: "10"}} >
-           
-              <div class="d-flex justify-content-center" >
+        <div
+          id="carouselExampleControls"
+          className="carousel slide"
+          data-bs-ride="carousel"
+          style={{ objectFit: "cover !important" }}
+        >
+          <div className="carousel-inner" id="carousel">
+            <div
+              className="carousel-caption d-none d-md-block"
+              style={{ zIndex: "10" }}
+            >
+              <div class="d-flex justify-content-center">
                 <input
                   class="form-control me-2"
                   type="search"
@@ -55,55 +57,55 @@ export default function Home() {
                   Search
                 </button> */}
               </div>
+            </div>
+            <div className="carousel-item active">
+              <img
+                src="https://source.unsplash.com/random/3000x3000/?starter"
+                className="d-block w-100"
+                alt="..."
+              />
+            </div>
+            <div className="carousel-item">
+              <img
+                src="https://source.unsplash.com/random/3000x3000/?maincourse"
+                className="d-block w-100"
+                alt="..."
+              />
+            </div>
+            <div className="carousel-item">
+              <img
+                src="https://source.unsplash.com/random/3000x3000/?dosa"
+                className="d-block w-100"
+                alt="..."
+              />
+            </div>
           </div>
-          <div className="carousel-item active">
-            <img
-              src="https://source.unsplash.com/random/3000x3000/?burger"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://source.unsplash.com/random/3000x3000/?naan"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://source.unsplash.com/random/3000x3000/?pizza"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
+          >
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
+          >
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Next</span>
+          </button>
         </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Next</span>
-        </button>
       </div>
-    </div>
       <div className=" conatiner m-3">
         {foodcat !== [] ? (
           foodcat.map((data) => {
@@ -115,7 +117,13 @@ export default function Home() {
                 <hr />
                 {food !== [] ? (
                   food
-                    .filter((item) => (item.CategoryName === data.CategoryName) && (item.name.toLowerCase().includes(search.toLocaleLowerCase()))) 
+                    .filter(
+                      (item) =>
+                        item.CategoryName === data.CategoryName &&
+                        item.name
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase())
+                    )
                     .map((items) => {
                       return (
                         <div
@@ -123,10 +131,10 @@ export default function Home() {
                           className="col-12 col-md-6 col-lg-3 m-3"
                           style={{ width: "18rem", maxHeight: "360px" }}
                         >
-                          <Cart foodName={items.name}
-                          options={items.options[0]}
-                          imgSrc={items.img}
-                          ></Cart>
+                          <Card
+                            foodItem={items}
+                            options={items.options[0]}
+                          ></Card>
                         </div>
                       );
                     })

@@ -2,6 +2,7 @@ import React from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Navbar from "../components/Navbar";
 export default function Login() {
   let navigate = useNavigate();
   const [credentials, setCredentials] = useState({
@@ -29,6 +30,7 @@ export default function Login() {
     const json = await response.json();
     console.log(json);
     if(json.success){
+      localStorage.setItem('userEmail', credentials.email);
        localStorage.setItem('authToken', json.authToken);
        console.log(localStorage.getItem('authToken'));
        navigate('/');
@@ -38,7 +40,8 @@ export default function Login() {
         }
   };
   return (
-    
+   <>
+    <Navbar/>
     <div className="conatiner">
     <form onSubmit={handlesubmit}>
       <div className="mb-3">
@@ -78,5 +81,6 @@ export default function Login() {
       </Link>
     </form>
   </div>
+   </>
   )
 }
